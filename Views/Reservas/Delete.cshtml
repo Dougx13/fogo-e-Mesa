@@ -1,0 +1,22 @@
+@model RestauranteApp.Models.Reserva
+
+@{
+    ViewData["Title"] = "Excluir Reserva";
+}
+
+<div class="page-card">
+    <div class="section-header">
+        <div>
+            <p class="eyebrow">Delete</p>
+            <h1 class="section-title">Excluir reserva</h1>
+        </div>
+        <a asp-action="Index" class="btn btn-outline-primary">Cancelar</a>
+    </div>
+
+    <p>Tem certeza que deseja remover a reserva de <strong>@Model.Cliente?.Nome</strong> para a mesa <strong>@Model.Mesa?.Numero</strong>?</p>
+
+    <form asp-action="Delete">
+        <input asp-for="IdReserva" type="hidden" />
+        <button type="submit" class="btn btn-danger">Excluir</button>
+    </form>
+</div>

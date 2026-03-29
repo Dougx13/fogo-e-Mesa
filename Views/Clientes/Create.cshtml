@@ -1,0 +1,46 @@
+@model RestauranteApp.Models.Cliente
+
+@{
+    ViewData["Title"] = "Novo Cliente";
+}
+
+<div class="form-shell">
+    <div class="section-header">
+        <div>
+            <p class="eyebrow">Create</p>
+            <h1 class="section-title">Cadastrar cliente</h1>
+        </div>
+        <a asp-action="Index" class="btn btn-outline-primary">Voltar</a>
+    </div>
+
+    <form asp-action="Create" method="post" class="row g-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-md-6">
+            <label asp-for="Nome" class="form-label"></label>
+            <input asp-for="Nome" class="form-control" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="Telefone" class="form-label"></label>
+            <input asp-for="Telefone" class="form-control" />
+            <span asp-validation-for="Telefone" class="text-danger"></span>
+        </div>
+
+        <div class="col-12">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="col-12 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Salvar cliente</button>
+            <a asp-controller="Reservas" asp-action="Create" class="btn btn-outline-secondary">Ir para reservas</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

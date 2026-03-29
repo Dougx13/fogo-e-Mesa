@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Fogo & Mesa";
+}
+
+<section class="hero-section">
+    <div class="hero-copy">
+        <p class="eyebrow">Fogo & Mesa</p>
+        <h1>Reservas com atendimento mais rapido e tudo planejado antes da chegada.</h1>
+        <p class="hero-text">
+            Cadastre o cliente, escolha a mesa, informe data e horario e registre o pedido antecipado com prato principal,
+            bebida e sobremesa em um unico fluxo.
+        </p>
+        <div class="hero-actions">
+            <a asp-controller="Reservas" asp-action="Create" class="btn btn-primary btn-lg">Nova reserva</a>
+            <a asp-controller="Clientes" asp-action="Create" class="btn btn-outline-light btn-lg">Cadastrar cliente</a>
+        </div>
+    </div>
+</section>
+
+<section class="feature-grid">
+    <article class="feature-card">
+        <span class="feature-icon">01</span>
+        <h2>Reservas</h2>
+        <p>Crie e consulte reservas gravadas no banco com Entity Framework.</p>
+        <a asp-controller="Reservas" asp-action="Index" class="btn btn-primary">Ver reservas</a>
+    </article>
+
+    <article class="feature-card">
+        <span class="feature-icon">02</span>
+        <h2>Clientes</h2>
+        <p>Cadastre os dados do cliente para reutilizar no momento da reserva.</p>
+        <a asp-controller="Clientes" asp-action="Index" class="btn btn-outline-primary">Ver clientes</a>
+    </article>
+
+    <article class="feature-card">
+        <span class="feature-icon">03</span>
+        <h2>Mesas</h2>
+        <p>Consulte as mesas disponiveis e a capacidade antes de confirmar a reserva.</p>
+        <a asp-controller="Mesas" asp-action="Index" class="btn btn-outline-primary">Ver mesas</a>
+    </article>
+</section>
+
+<section class="info-banner">
+    <h3>Fluxo avaliado no CRUD</h3>
+    <p>
+        O projeto esta preparado principalmente para <strong>Create</strong> e <strong>Read</strong>: cadastrar,
+        listar e detalhar clientes e reservas com persistencia no banco.
+    </p>
+</section>

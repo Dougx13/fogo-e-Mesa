@@ -1,0 +1,77 @@
+@model RestauranteApp.Models.Reserva
+
+@{
+    ViewData["Title"] = "Nova Reserva";
+}
+
+<div class="form-shell">
+    <div class="section-header">
+        <div>
+            <p class="eyebrow">Create</p>
+            <h1 class="section-title">Nova reserva</h1>
+        </div>
+        <a asp-action="Index" class="btn btn-outline-primary">Voltar</a>
+    </div>
+
+    @if (ViewBag.SemClientes == true)
+    {
+        <div class="alert alert-warning">
+            Nenhum cliente foi cadastrado ainda. <a asp-controller="Clientes" asp-action="Create">Cadastre um cliente antes de reservar.</a>
+        </div>
+    }
+
+    <form asp-action="Create" method="post" class="row g-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-md-6">
+            <label asp-for="IdCliente" class="form-label"></label>
+            <select asp-for="IdCliente" asp-items="ViewBag.IdCliente" class="form-select">
+                <option value="">Selecione um cliente</option>
+            </select>
+            <span asp-validation-for="IdCliente" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="IdMesa" class="form-label"></label>
+            <select asp-for="IdMesa" asp-items="ViewBag.IdMesa" class="form-select">
+                <option value="">Selecione uma mesa</option>
+            </select>
+            <span asp-validation-for="IdMesa" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="DataReserva" class="form-label"></label>
+            <input asp-for="DataReserva" type="date" class="form-control" />
+            <span asp-validation-for="DataReserva" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="Horario" class="form-label"></label>
+            <input asp-for="Horario" type="time" class="form-control" />
+            <span asp-validation-for="Horario" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="QuantidadePessoas" class="form-label"></label>
+            <input asp-for="QuantidadePessoas" class="form-control" />
+            <span asp-validation-for="QuantidadePessoas" class="text-danger"></span>
+        </div>
+
+        <div class="col-12">
+            <label asp-for="PedidoReserva" class="form-label"></label>
+            <textarea asp-for="PedidoReserva" class="form-control" rows="4" placeholder="Ex.: Prato principal: risoto de filet | Bebida: suco de uva | Sobremesa: petit gateau"></textarea>
+            <span asp-validation-for="PedidoReserva" class="text-danger"></span>
+        </div>
+
+        <input asp-for="Status" type="hidden" value="pendente" />
+
+        <div class="col-12 d-flex gap-2">
+            <button type="submit" class="btn btn-primary" @(ViewBag.SemClientes == true ? "disabled" : null)>Salvar reserva</button>
+            <a asp-controller="Clientes" asp-action="Create" class="btn btn-outline-secondary">Cadastrar cliente</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,37 @@
+@model IEnumerable<RestauranteApp.Models.Mesa>
+
+@{
+    ViewData["Title"] = "Mesas";
+}
+
+<div class="page-card">
+    <div class="section-header">
+        <div>
+            <p class="eyebrow">Consulta</p>
+            <h1 class="section-title">Mesas disponiveis</h1>
+        </div>
+        <a asp-controller="Reservas" asp-action="Create" class="btn btn-primary">Reservar mesa</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Mesa</th>
+                    <th>Capacidade</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var mesa in Model)
+                {
+                    <tr>
+                        <td>@mesa.Numero</td>
+                        <td>@mesa.Capacidade pessoas</td>
+                        <td><span class="status-pill">@mesa.Status</span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

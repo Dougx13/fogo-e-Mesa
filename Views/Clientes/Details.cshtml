@@ -1,0 +1,30 @@
+@model RestauranteApp.Models.Cliente
+
+@{
+    ViewData["Title"] = "Detalhes do Cliente";
+}
+
+<div class="page-card">
+    <div class="section-header">
+        <div>
+            <p class="eyebrow">Read</p>
+            <h1 class="section-title">@Model.Nome</h1>
+        </div>
+        <a asp-action="Index" class="btn btn-outline-primary">Voltar</a>
+    </div>
+
+    <div class="detail-grid">
+        <div class="detail-item">
+            <span>E-mail</span>
+            <strong>@Model.Email</strong>
+        </div>
+        <div class="detail-item">
+            <span>Telefone</span>
+            <strong>@(string.IsNullOrWhiteSpace(Model.Telefone) ? "Nao informado" : Model.Telefone)</strong>
+        </div>
+        <div class="detail-item">
+            <span>Reservas registradas</span>
+            <strong>@Model.Reservas.Count</strong>
+        </div>
+    </div>
+</div>

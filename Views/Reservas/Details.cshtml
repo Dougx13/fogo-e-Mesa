@@ -1,0 +1,55 @@
+@model RestauranteApp.Models.Reserva
+
+@{
+    ViewData["Title"] = "Detalhes da Reserva";
+}
+
+<div class="page-card">
+    <div class="section-header">
+        <div>
+            <p class="eyebrow">Read</p>
+            <h1 class="section-title">Reserva #@Model.IdReserva</h1>
+        </div>
+        <div class="d-flex gap-2">
+            <a asp-action="Index" class="btn btn-outline-primary">Voltar</a>
+            <a asp-action="Create" class="btn btn-primary">Nova reserva</a>
+        </div>
+    </div>
+
+    @if (TempData["Sucesso"] != null)
+    {
+        <div class="alert alert-success">@TempData["Sucesso"]</div>
+    }
+
+    <div class="detail-grid">
+        <div class="detail-item">
+            <span>Cliente</span>
+            <strong>@Model.Cliente?.Nome</strong>
+        </div>
+        <div class="detail-item">
+            <span>Mesa</span>
+            <strong>@Model.Mesa?.Numero</strong>
+        </div>
+        <div class="detail-item">
+            <span>Data</span>
+            <strong>@Model.DataReserva.ToString("dd/MM/yyyy")</strong>
+        </div>
+        <div class="detail-item">
+            <span>Horario</span>
+            <strong>@Model.Horario.ToString(@"hh\:mm")</strong>
+        </div>
+        <div class="detail-item">
+            <span>Pessoas</span>
+            <strong>@Model.QuantidadePessoas</strong>
+        </div>
+        <div class="detail-item">
+            <span>Status</span>
+            <strong class="status-pill">@Model.Status</strong>
+        </div>
+    </div>
+
+    <div class="detail-note">
+        <h2>Pedido antecipado</h2>
+        <p>@(string.IsNullOrWhiteSpace(Model.PedidoReserva) ? "Nenhum item antecipado foi informado." : Model.PedidoReserva)</p>
+    </div>
+</div>
