@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // ── MVC ─────────────────────────────────────────
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
 
 // ── Entity Framework + SQL Server ───────────────
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -26,6 +27,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 

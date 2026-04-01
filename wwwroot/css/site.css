@@ -220,11 +220,43 @@ a {
   border: 1px solid var(--line);
 }
 
+.info-banner.compact {
+  padding: 1rem 1.25rem;
+}
+
+.info-banner.compact h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+}
+
+.info-banner.compact p {
+  margin-bottom: 0;
+}
+
 .form-control,
 .form-select {
   border-radius: 14px;
   border-color: rgba(39, 28, 23, 0.16);
   padding: 0.8rem 0.95rem;
+}
+
+.form-helper {
+  display: inline-block;
+  margin-top: 0.4rem;
+  color: var(--muted);
+}
+
+.auth-shell {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.auth-tip {
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 18px;
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
 }
 
 .btn {

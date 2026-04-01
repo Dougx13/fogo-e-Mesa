@@ -8,13 +8,14 @@
 
     <div class="section-header mb-3">
         <div>
-            <p class="eyebrow">Read</p>
-            <h1 class="section-title">Reservas</h1>
+            <p class="eyebrow">Area do Cliente</p>
+            <h1 class="section-title">Consultar reservas</h1>
         </div>
 
-        <a asp-action="Create" class="btn btn-primary">
-            Nova Reserva
-        </a>
+        <div class="d-flex gap-2">
+            <a asp-action="Create" class="btn btn-primary">Nova Reserva</a>
+            <a asp-action="Admin" class="btn btn-outline-secondary">Painel Admin</a>
+        </div>
     </div>
 
     @if (TempData["Sucesso"] != null)
@@ -35,7 +36,7 @@
                 <th>Pessoas</th>
                 <th>Pedido</th>
                 <th>Status</th>
-                <th>Ações</th>
+                <th>Acoes</th>
             </tr>
         </thead>
 
@@ -72,14 +73,6 @@
                     <td>
                         <a asp-action="Details" asp-route-id="@item.IdReserva" class="btn btn-info btn-sm">
                             Detalhes
-                        </a>
-
-                        <a asp-action="Edit" asp-route-id="@item.IdReserva" class="btn btn-warning btn-sm">
-                            Editar
-                        </a>
-
-                        <a asp-action="Delete" asp-route-id="@item.IdReserva" class="btn btn-danger btn-sm">
-                            Excluir
                         </a>
                     </td>
 

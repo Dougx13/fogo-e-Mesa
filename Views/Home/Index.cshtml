@@ -1,5 +1,5 @@
-@{
-    ViewData["Title"] = "Fogo & Mesa";
+﻿@{
+    ViewData["Title"] = "🔥Fogo & Mesa";
 }
 
 <section class="hero-section">
@@ -8,16 +8,25 @@
         <h1>Reservas com atendimento mais rapido e tudo planejado antes da chegada.</h1>
         <p class="hero-text">
             Cadastre o cliente, escolha a mesa, informe data e horario e registre o pedido antecipado com prato principal,
-            bebida e sobremesa em um unico fluxo.
+            bebida e sobremesa em um unico fluxo. O sistema Fogo & Mesa foi desenvolvido para facilitar a gestão do restaurante,
+            organizando reservas, clientes, mesas e pedidos de forma simples e eficiente.
         </p>
+
+        <p class="hero-text">
+            Com o sistema, é possível melhorar o atendimento, reduzir tempo de espera, organizar o fluxo de clientes
+            e ter maior controle das informações do restaurante.
+        </p>
+
         <div class="hero-actions">
-            <a asp-controller="Reservas" asp-action="Create" class="btn btn-primary btn-lg">Nova reserva</a>
-            <a asp-controller="Clientes" asp-action="Create" class="btn btn-outline-light btn-lg">Cadastrar cliente</a>
+            <a asp-controller="Auth" asp-action="Login" class="btn btn-primary btn-lg">Entrar</a>
+            <a asp-controller="Auth" asp-action="Register" class="btn btn-outline-light btn-lg">Cadastrar cliente</a>
         </div>
     </div>
 </section>
 
+
 <section class="feature-grid">
+
     <article class="feature-card">
         <span class="feature-icon">01</span>
         <h2>Reservas</h2>
@@ -38,7 +47,11 @@
         <p>Consulte as mesas disponiveis e a capacidade antes de confirmar a reserva.</p>
         <a asp-controller="Mesas" asp-action="Index" class="btn btn-outline-primary">Ver mesas</a>
     </article>
+
+  
+
 </section>
+
 
 <section class="info-banner">
     <h3>Fluxo avaliado no CRUD</h3>
@@ -46,4 +59,42 @@
         O projeto esta preparado principalmente para <strong>Create</strong> e <strong>Read</strong>: cadastrar,
         listar e detalhar clientes e reservas com persistencia no banco.
     </p>
+</section>
+
+
+<section class="info-banner">
+    <h3>Sobre o Sistema</h3>
+    <p>
+        O sistema Fogo & Mesa foi desenvolvido para auxiliar restaurantes no gerenciamento de reservas,
+        clientes, mesas e pedidos. Com uma interface simples e intuitiva, o sistema permite organizar
+        o atendimento e melhorar a experiência do cliente.
+    </p>
+
+    <p>
+        A aplicação utiliza ASP.NET Core MVC, Entity Framework e SQL Server, garantindo segurança,
+        desempenho e confiabilidade no armazenamento dos dados.
+    </p>
+</section>
+
+
+<section class="feature-grid">
+
+    <article class="feature-card">
+        <span class="feature-icon">🍽️</span>
+        <h2>Pratos Principais</h2>
+        <p>Churrasco, massas, pratos executivos e especialidades da casa.</p>
+    </article>
+
+    <article class="feature-card">
+        <span class="feature-icon">🥤</span>
+        <h2>Bebidas</h2>
+        <p>Refrigerantes, sucos naturais, água e bebidas especiais.</p>
+    </article>
+
+    <article class="feature-card">
+        <span class="feature-icon">🍰</span>
+        <h2>Sobremesas</h2>
+        <p>Doces, sobremesas especiais e opções da casa.</p>
+    </article>
+
 </section>

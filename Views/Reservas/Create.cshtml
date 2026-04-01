@@ -7,29 +7,23 @@
 <div class="form-shell">
     <div class="section-header">
         <div>
-            <p class="eyebrow">Create</p>
+            <p class="eyebrow">Area do Cliente</p>
             <h1 class="section-title">Nova reserva</h1>
         </div>
         <a asp-action="Index" class="btn btn-outline-primary">Voltar</a>
     </div>
 
-    @if (ViewBag.SemClientes == true)
-    {
-        <div class="alert alert-warning">
-            Nenhum cliente foi cadastrado ainda. <a asp-controller="Clientes" asp-action="Create">Cadastre um cliente antes de reservar.</a>
-        </div>
-    }
+    <div class="info-banner compact">
+        <h3>Campo do cliente</h3>
+        <p>
+            Cliente logado: <strong>@ViewBag.ClienteLogado</strong><br />
+            O cliente pode cadastrar a reserva apenas para a data atual ou datas futuras. O restaurante aceita reservas
+            das @ViewBag.HorarioAbertura as @ViewBag.HorarioEncerramento e exige pelo menos 1 hora de antecedencia para o dia atual.
+        </p>
+    </div>
 
     <form asp-action="Create" method="post" class="row g-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-        <div class="col-md-6">
-            <label asp-for="IdCliente" class="form-label"></label>
-            <select asp-for="IdCliente" asp-items="ViewBag.IdCliente" class="form-select">
-                <option value="">Selecione um cliente</option>
-            </select>
-            <span asp-validation-for="IdCliente" class="text-danger"></span>
-        </div>
 
         <div class="col-md-6">
             <label asp-for="IdMesa" class="form-label"></label>
@@ -41,13 +35,20 @@
 
         <div class="col-md-4">
             <label asp-for="DataReserva" class="form-label"></label>
-            <input asp-for="DataReserva" type="date" class="form-control" />
+            <input asp-for="DataReserva" type="date" class="form-control reserva-data" min="@ViewBag.DataMinima" />
             <span asp-validation-for="DataReserva" class="text-danger"></span>
         </div>
 
         <div class="col-md-4">
             <label asp-for="Horario" class="form-label"></label>
-            <input asp-for="Horario" type="time" class="form-control" />
+            <input asp-for="Horario"
+                   type="time"
+                   class="form-control reserva-horario"
+                   min="@ViewBag.HorarioAbertura"
+                   max="@ViewBag.HorarioEncerramento"
+                   data-min-hoje="@ViewBag.HorarioMinimoHoje"
+                   data-min-padrao="@ViewBag.HorarioAbertura"
+                   data-max-horario="@ViewBag.HorarioEncerramento" />
             <span asp-validation-for="Horario" class="text-danger"></span>
         </div>
 
@@ -61,13 +62,14 @@
             <label asp-for="PedidoReserva" class="form-label"></label>
             <textarea asp-for="PedidoReserva" class="form-control" rows="4" placeholder="Ex.: Prato principal: risoto de filet | Bebida: suco de uva | Sobremesa: petit gateau"></textarea>
             <span asp-validation-for="PedidoReserva" class="text-danger"></span>
+            <small class="form-helper">Este campo e voltado ao cliente para registrar o pedido antecipado.</small>
         </div>
 
         <input asp-for="Status" type="hidden" value="pendente" />
 
         <div class="col-12 d-flex gap-2">
-            <button type="submit" class="btn btn-primary" @(ViewBag.SemClientes == true ? "disabled" : null)>Salvar reserva</button>
-            <a asp-controller="Clientes" asp-action="Create" class="btn btn-outline-secondary">Cadastrar cliente</a>
+            <button type="submit" class="btn btn-primary">Salvar reserva</button>
+            <a asp-controller="Mesas" asp-action="Index" class="btn btn-outline-secondary">Ver mesas</a>
         </div>
     </form>
 </div>

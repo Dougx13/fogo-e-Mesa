@@ -1,22 +1,17 @@
-﻿
 using System.ComponentModel.DataAnnotations;
 
-namespace RestauranteApp.Models
+namespace RestauranteApp.ViewModels
 {
-    public class Cliente
+    public class RegisterViewModel
     {
-        public int IdCliente { get; set; }
-
         [Required(ErrorMessage = "Nome é obrigatório")]
         [StringLength(100)]
         public string Nome { get; set; } = string.Empty;
 
         [StringLength(20)]
-        [Display(Name = "Telefone")]
         public string? Telefone { get; set; }
 
         [Required(ErrorMessage = "E-mail é obrigatório")]
-        [StringLength(100)]
         [EmailAddress]
         public string Email { get; set; } = string.Empty;
 
@@ -25,10 +20,9 @@ namespace RestauranteApp.Models
         [DataType(DataType.Password)]
         public string Senha { get; set; } = string.Empty;
 
-        [Required]
-        [StringLength(20)]
-        public string Perfil { get; set; } = "Cliente";
-
-        public ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
+        [Required(ErrorMessage = "Confirme a senha")]
+        [DataType(DataType.Password)]
+        [Compare("Senha", ErrorMessage = "As senhas não conferem.")]
+        public string ConfirmarSenha { get; set; } = string.Empty;
     }
 }

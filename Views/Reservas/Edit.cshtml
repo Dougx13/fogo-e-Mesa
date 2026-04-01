@@ -7,10 +7,15 @@
 <div class="form-shell">
     <div class="section-header">
         <div>
-            <p class="eyebrow">Update</p>
+            <p class="eyebrow">Area do Administrador</p>
             <h1 class="section-title">Editar reserva</h1>
         </div>
-        <a asp-action="Index" class="btn btn-outline-primary">Voltar</a>
+        <a asp-action="Admin" class="btn btn-outline-primary">Voltar</a>
+    </div>
+
+    <div class="info-banner compact">
+        <h3>Campo administrativo</h3>
+        <p>Somente o administrador pode alterar status, mesa, cliente e demais dados da reserva.</p>
     </div>
 
     <form asp-action="Edit" method="post" class="row g-3">
@@ -19,7 +24,7 @@
 
         <div class="col-md-6">
             <label asp-for="IdCliente" class="form-label"></label>
-            <select asp-for="IdCliente" asp-items="ViewBag.IdCliente" class="form-select"></select>
+            <select asp-for="IdCliente" asp-items="ViewBag.Clientes" class="form-select"></select>
         </div>
 
         <div class="col-md-6">
@@ -29,12 +34,19 @@
 
         <div class="col-md-4">
             <label asp-for="DataReserva" class="form-label"></label>
-            <input asp-for="DataReserva" type="date" class="form-control" />
+            <input asp-for="DataReserva" type="date" class="form-control reserva-data" min="@ViewBag.DataMinima" />
         </div>
 
         <div class="col-md-4">
             <label asp-for="Horario" class="form-label"></label>
-            <input asp-for="Horario" type="time" class="form-control" />
+            <input asp-for="Horario"
+                   type="time"
+                   class="form-control reserva-horario"
+                   min="@ViewBag.HorarioAbertura"
+                   max="@ViewBag.HorarioEncerramento"
+                   data-min-hoje="@ViewBag.HorarioMinimoHoje"
+                   data-min-padrao="@ViewBag.HorarioAbertura"
+                   data-max-horario="@ViewBag.HorarioEncerramento" />
         </div>
 
         <div class="col-md-4">

@@ -1,0 +1,64 @@
+@model IEnumerable<RestauranteApp.Models.Reserva>
+
+@{
+    ViewData["Title"] = "Painel Administrativo";
+}
+
+<div class="page-card">
+    <div class="section-header mb-3">
+        <div>
+            <p class="eyebrow">Area do Administrador</p>
+            <h1 class="section-title">Gerenciar reservas</h1>
+        </div>
+
+        <div class="d-flex gap-2">
+            <a asp-action="Index" class="btn btn-outline-secondary">Area do Cliente</a>
+            <a asp-controller="Mesas" asp-action="Admin" class="btn btn-outline-secondary">Gerenciar mesas</a>
+            <a asp-action="Create" class="btn btn-primary">Nova Reserva</a>
+        </div>
+    </div>
+
+    @if (TempData["Sucesso"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Sucesso"]
+        </div>
+    }
+
+    <div class="info-banner compact">
+        <h3>Recursos do administrador</h3>
+        <p>Neste painel ficam as acoes de editar e excluir reservas, separadas da experiencia do cliente.</p>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Mesa</th>
+                <th>Data</th>
+                <th>Horario</th>
+                <th>Pessoas</th>
+                <th>Status</th>
+                <th class="text-end">Acoes Admin</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Cliente?.Nome</td>
+                    <td>@item.Mesa?.Numero</td>
+                    <td>@item.DataReserva.ToString("dd/MM/yyyy")</td>
+                    <td>@item.Horario.ToString(@"hh\:mm")</td>
+                    <td>@item.QuantidadePessoas</td>
+                    <td><span class="status-pill">@item.Status</span></td>
+                    <td class="text-end">
+                        <a asp-action="Details" asp-route-id="@item.IdReserva" class="btn btn-info btn-sm">Detalhes</a>
+                        <a asp-action="Edit" asp-route-id="@item.IdReserva" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@item.IdReserva" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

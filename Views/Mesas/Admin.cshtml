@@ -1,0 +1,52 @@
+@model IEnumerable<RestauranteApp.Models.Mesa>
+
+@{
+    ViewData["Title"] = "Painel de Mesas";
+}
+
+<div class="page-card">
+    <div class="section-header">
+        <div>
+            <p class="eyebrow">Area do Administrador</p>
+            <h1 class="section-title">Gerenciar mesas</h1>
+        </div>
+        <div class="d-flex gap-2">
+            <a asp-action="Create" class="btn btn-primary">Adicionar mesa</a>
+            <a asp-controller="Reservas" asp-action="Admin" class="btn btn-outline-secondary">Voltar ao admin</a>
+        </div>
+    </div>
+
+    @if (TempData["Sucesso"] != null)
+    {
+        <div class="alert alert-success">@TempData["Sucesso"]</div>
+    }
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Mesa</th>
+                <th>Capacidade</th>
+                <th>Status</th>
+                <th class="text-end">Acoes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var mesa in Model)
+            {
+                <tr>
+                    <td>@mesa.Numero</td>
+                    <td>@mesa.Capacidade pessoas</td>
+                    <td><span class="status-pill">@mesa.Status</span></td>
+                    <td class="text-end">
+                        <form asp-action="AlternarStatus" method="post" class="d-inline">
+                            <input type="hidden" name="idMesa" value="@mesa.IdMesa" />
+                            <button type="submit" class="btn btn-sm btn-outline-primary">
+                                @(mesa.Status == "disponivel" ? "Marcar reservada" : "Liberar mesa")
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

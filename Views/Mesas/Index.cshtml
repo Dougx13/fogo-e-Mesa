@@ -10,7 +10,10 @@
             <p class="eyebrow">Consulta</p>
             <h1 class="section-title">Mesas disponiveis</h1>
         </div>
-        <a asp-controller="Reservas" asp-action="Create" class="btn btn-primary">Reservar mesa</a>
+        <div class="d-flex gap-2">
+            <a asp-controller="Reservas" asp-action="Create" class="btn btn-primary">Reservar mesa</a>
+            <a asp-controller="Mesas" asp-action="Admin" class="btn btn-outline-secondary">Painel de mesas</a>
+        </div>
     </div>
 
     <div class="table-responsive">

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestauranteApp.Data;
+using RestauranteApp.Infrastructure;
 using RestauranteApp.Models;
 
 namespace RestauranteApp.Controllers
@@ -10,11 +11,26 @@ namespace RestauranteApp.Controllers
         private readonly AppDbContext _context;
         public ClientesController(AppDbContext context) => _context = context;
 
-        public async Task<IActionResult> Index() =>
-            View(await _context.Clientes.OrderBy(c => c.Nome).ToListAsync());
+        public async Task<IActionResult> Index()
+        {
+            if (HttpContext.Session.GetString(SessionKeys.UserRole) != "Administrador")
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
+            return View(await _context.Clientes
+                .Where(c => c.Perfil == "Cliente")
+                .OrderBy(c => c.Nome)
+                .ToListAsync());
+        }
 
         public async Task<IActionResult> Details(int? id)
         {
+            if (HttpContext.Session.GetString(SessionKeys.UserRole) != "Administrador")
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
             if (id == null) return NotFound();
             var cliente = await _context.Clientes
                 .Include(c => c.Reservas)
@@ -22,29 +38,12 @@ namespace RestauranteApp.Controllers
             return cliente == null ? NotFound() : View(cliente);
         }
 
-        public IActionResult Create() => View();
+        public IActionResult Create() => RedirectToAction("Register", "Auth");
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nome,Telefone,Email")] Cliente cliente)
+        public IActionResult Create([Bind("Nome,Telefone,Email")] Cliente cliente)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(cliente);
-            }
-
-            var emailJaExiste = await _context.Clientes
-                .AnyAsync(c => c.Email == cliente.Email);
-
-            if (emailJaExiste)
-            {
-                ModelState.AddModelError("Email", "Já existe um cliente cadastrado com este e-mail.");
-                return View(cliente);
-            }
-
-            _context.Add(cliente);
-            await _context.SaveChangesAsync();
-            TempData["Sucesso"] = "Cliente cadastrado com sucesso!";
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Register", "Auth");
         }
 
         public async Task<IActionResult> Edit(int? id)

@@ -26,6 +26,8 @@ namespace RestauranteApp.Data
             {
                 e.HasKey(c => c.IdCliente);
                 e.Property(c => c.Email).IsRequired().HasMaxLength(100);
+                e.Property(c => c.Senha).IsRequired().HasMaxLength(60);
+                e.Property(c => c.Perfil).IsRequired().HasMaxLength(20);
                 e.HasIndex(c => c.Email).IsUnique();
                 e.Property(c => c.Telefone).HasMaxLength(20);
             });
@@ -118,6 +120,18 @@ namespace RestauranteApp.Data
                 new Mesa { IdMesa = 2, Numero = 2, Capacidade = 4, Status = "disponivel" },
                 new Mesa { IdMesa = 3, Numero = 3, Capacidade = 6, Status = "disponivel" },
                 new Mesa { IdMesa = 4, Numero = 4, Capacidade = 8, Status = "disponivel" }
+            );
+
+            modelBuilder.Entity<Cliente>().HasData(
+                new Cliente
+                {
+                    IdCliente = 999,
+                    Nome = "Administrador",
+                    Telefone = "(00) 00000-0000",
+                    Email = "admin@fogomesa.com",
+                    Senha = "admin123",
+                    Perfil = "Administrador"
+                }
             );
         }
     }

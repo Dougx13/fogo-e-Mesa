@@ -1,0 +1,54 @@
+@model RestauranteApp.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="form-shell auth-shell">
+    <div class="section-header">
+        <div>
+            <p class="eyebrow">Acesso</p>
+            <h1 class="section-title">Entrar no sistema</h1>
+        </div>
+        <a asp-action="Register" class="btn btn-outline-primary">Cadastrar</a>
+    </div>
+
+    @if (TempData["Sucesso"] != null)
+    {
+        <div class="alert alert-success">@TempData["Sucesso"]</div>
+    }
+
+    <div class="info-banner compact">
+        <h3>Perfis</h3>
+        <p>Administrador entra no painel admin. Cliente entra na area de reservas.</p>
+    </div>
+
+    <form asp-action="Login" method="post" class="row g-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-12">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="col-12">
+            <label asp-for="Senha" class="form-label"></label>
+            <input asp-for="Senha" class="form-control" />
+            <span asp-validation-for="Senha" class="text-danger"></span>
+        </div>
+
+        <div class="col-12 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Entrar</button>
+            <a asp-action="Register" class="btn btn-outline-secondary">Criar conta</a>
+        </div>
+    </form>
+
+    <div class="auth-tip">
+        <strong>Administrador padrao:</strong> admin@fogomesa.com / admin123
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

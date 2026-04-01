@@ -1,0 +1,39 @@
+@model RestauranteApp.Models.Mesa
+
+@{
+    ViewData["Title"] = "Adicionar Mesa";
+}
+
+<div class="form-shell">
+    <div class="section-header">
+        <div>
+            <p class="eyebrow">Area do Administrador</p>
+            <h1 class="section-title">Adicionar nova mesa</h1>
+        </div>
+        <a asp-action="Admin" class="btn btn-outline-primary">Voltar</a>
+    </div>
+
+    <form asp-action="Create" method="post" class="row g-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-md-6">
+            <label asp-for="Numero" class="form-label"></label>
+            <input asp-for="Numero" class="form-control" />
+            <span asp-validation-for="Numero" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="Capacidade" class="form-label"></label>
+            <input asp-for="Capacidade" class="form-control" />
+            <span asp-validation-for="Capacidade" class="text-danger"></span>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Salvar mesa</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

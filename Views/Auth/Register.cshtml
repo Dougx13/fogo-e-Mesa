@@ -1,0 +1,57 @@
+@model RestauranteApp.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<div class="form-shell auth-shell">
+    <div class="section-header">
+        <div>
+            <p class="eyebrow">Cadastro</p>
+            <h1 class="section-title">Criar conta de cliente</h1>
+        </div>
+        <a asp-action="Login" class="btn btn-outline-primary">Voltar ao login</a>
+    </div>
+
+    <form asp-action="Register" method="post" class="row g-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-md-6">
+            <label asp-for="Nome" class="form-label"></label>
+            <input asp-for="Nome" class="form-control" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="Telefone" class="form-label"></label>
+            <input asp-for="Telefone" class="form-control" />
+            <span asp-validation-for="Telefone" class="text-danger"></span>
+        </div>
+
+        <div class="col-12">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="Senha" class="form-label"></label>
+            <input asp-for="Senha" class="form-control" />
+            <span asp-validation-for="Senha" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="ConfirmarSenha" class="form-label"></label>
+            <input asp-for="ConfirmarSenha" class="form-control" />
+            <span asp-validation-for="ConfirmarSenha" class="text-danger"></span>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Cadastrar cliente</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -7,10 +7,15 @@
 <div class="page-card">
     <div class="section-header">
         <div>
-            <p class="eyebrow">Delete</p>
+            <p class="eyebrow">Area do Administrador</p>
             <h1 class="section-title">Excluir reserva</h1>
         </div>
-        <a asp-action="Index" class="btn btn-outline-primary">Cancelar</a>
+        <a asp-action="Admin" class="btn btn-outline-primary">Cancelar</a>
+    </div>
+
+    <div class="info-banner compact">
+        <h3>Acao restrita</h3>
+        <p>Excluir reservas e uma permissao reservada ao administrador.</p>
     </div>
 
     <p>Tem certeza que deseja remover a reserva de <strong>@Model.Cliente?.Nome</strong> para a mesa <strong>@Model.Mesa?.Numero</strong>?</p>
